@@ -14,7 +14,7 @@ model User {
   id Int @id @default(autoincrement())
   email String
   password String
-  createdAt DateTime
+  createdAt DateTime @default(now())
   Session Session[]
   Credential Credential[]
   Note Note[]
@@ -29,7 +29,7 @@ model Session {
   userId Int
   user User @relation(fields: [userId], references: [id])
   token String
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   @@map("sessions")
 }
@@ -42,7 +42,7 @@ model Credential {
   url String
   username String
   password String
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   @@map("credentials")
 }
@@ -53,7 +53,7 @@ model Note {
   user User @relation(fields: [userId], references: [id])
   title String
   note String
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   @@map("notes")
 }
@@ -76,7 +76,7 @@ model Card {
   password String
   isVirtual Boolean
   type Type
-  createdAt DateTime
+  createdAt DateTime @default(now())
   
   @@map("cards")
 }
@@ -88,7 +88,7 @@ model Wifi {
   title String
   networkName String
   password String
-  createdAt DateTime
+  createdAt DateTime @default(now())
 
   @@map("wifi")
 }
