@@ -1,7 +1,7 @@
 import joi from "joi";
-import { CreateSignUpData } from "../services/authService";
+import { CreateAuthData } from "../services/authService";
 
-export const signUpSchema = joi.object<CreateSignUpData>({
+export const signUpSchema = joi.object<CreateAuthData>({
     email: joi.string().email().required(),
     password: joi.string().length(10).required()
 })
