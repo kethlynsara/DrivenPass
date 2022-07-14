@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  password String
+  createdAt DateTime
+  Session Session[]
+  Credential Credential[]
+  Note Note[]
+  Card Card[]
+  Wifi Wifi[]
+
+  @@map("users")
+}
+
+model Session {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  token String
+  createdAt DateTime
+
+  @@map("sessions")
+}
+
+model Credential {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  title String
+  url String
+  username String
+  password String
+  createdAt DateTime
+
+  @@map("credentials")
+}
+
+model Note {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  title String
+  note String
+  createdAt DateTime
+
+  @@map("notes")
+}
+
+enum Type {
+  debit
+  credit
+  debitAndCredit
+}
+
+model Card {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  title String
+  number String
+  name String
+  CVC String
+  expirationDate String
+  password String
+  isVirtual Boolean
+  type Type
+  createdAt DateTime
+  
+  @@map("cards")
+}
+
+model Wifi {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  title String
+  networkName String
+  password String
+  createdAt DateTime
+
+  @@map("wifi")
+}
+
