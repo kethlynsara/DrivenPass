@@ -13,3 +13,8 @@ export async function insert(signUpData: CreateAuthData) {
 export async function insertSession(sessionData: CreateSessionData) {
     await prisma.session.create({data: sessionData});
 }
+
+export async function findSession(token: string) {
+    const session = await prisma.session.findFirst({where: {token}});
+    return session;
+}
