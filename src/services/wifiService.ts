@@ -59,3 +59,9 @@ export async function getWifiById(id: number, userId: number) {
         password: newPassword
     }
 }
+
+export async function deleteWifi(id: number, userId: number) {
+    const wifi = await wifiRepository.findById(id);
+    checkExistingWifi(wifi, userId);
+    await wifiRepository.deleteWifi(id);
+}
