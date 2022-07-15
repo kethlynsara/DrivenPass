@@ -46,3 +46,16 @@ export async function getWifi(userId: number) {
     })
     return response;
 }
+
+export async function getWifiById(id: number, userId: number) {
+    const wifi = await wifiRepository.findById(id);
+    checkExistingWifi(wifi, userId);
+    const newPassword = utils.decrypt(wifi.password);
+
+    return {
+        id: wifi.id,
+        title: wifi.title,
+        networkName: wifi.networkName,
+        password: newPassword
+    }
+}

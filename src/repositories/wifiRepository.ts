@@ -11,3 +11,7 @@ export async function insert(wifiData: WifiStructure) {
 export async function findByUserId(userId: number) {
     return await prisma.wifi.findMany({where: {userId}});
 }
+
+export async function findById(id: number) {
+    return await prisma.wifi.findFirst({where: {id}});
+}
