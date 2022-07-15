@@ -64,3 +64,21 @@ export async function getCards(userId: number) {
     })
     return response;
 }
+
+export async function getCardById(id: number, userId: number) {
+    const card = await cardRepository.findById(id, userId);
+    checkExistingCard(card, userId);
+    const newPassword = utils.decrypt(card.password);   
+    const newCVC = utils.decrypt(card.CVC);
+    return {
+        id: card.id,
+        title: card.title,
+        number: card.number,
+        name: card.name,
+        CVC: newCVC,
+        expirationDate: card.expirationDate,
+        password: newPassword,
+        isVirtual: card.isVirtual,
+        type: card.type 
+    }
+}

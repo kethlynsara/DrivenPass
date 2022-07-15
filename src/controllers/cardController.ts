@@ -14,3 +14,14 @@ export async function getCards(req: Request, res: Response) {
     const cards = await cardService.getCards(userId);
     res.send(cards);
 }
+
+export async function getCardById(req: Request, res: Response) {
+    const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+
+    const userId: number = res.locals.userId;
+    const card = await cardService.getCardById(id, userId);
+    res.send(card);
+}

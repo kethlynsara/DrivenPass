@@ -15,3 +15,7 @@ export async function insert(cardData: CardStructure) {
 export async function findByUserId(userId:number) {
     return await prisma.card.findMany({where: {userId}});
 }
+
+export async function findById(id: number, userId:number) {
+    return await prisma.card.findFirst({where: {id, userId}});
+}
