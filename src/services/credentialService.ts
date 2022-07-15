@@ -1,5 +1,6 @@
 import Cryptr from "cryptr";
 import dotenv from "dotenv";
+import { Credential } from "@prisma/client";;
 import { CreateCredentialData } from "../repositories/credentialRepository.js";
 import * as credentialRepository from "../repositories/credentialRepository.js";
 dotenv.config();
@@ -28,6 +29,22 @@ function decrypt(encryptedString: string) {
     return decryptedString;
 }
 
+function checkExistingCredential(credential: Credential, userId: number) {
+    if (!credential) {
+        throw {
+            type: "not found",
+            message: "credential not found"
+        }
+    }
+
+    if (credential.userId !== userId) {
+        throw {
+            type: "not found",
+            message: "credentials not found"
+        }
+    }
+}
+
 export async function postCredential(credentialData: CreateCredentialData) {
     await checkCredentialTitle(credentialData);
     const passwordHash = await encrypt(credentialData.password);    
@@ -36,15 +53,16 @@ export async function postCredential(credentialData: CreateCredentialData) {
 
 export async function getCredentials(userId: number) {
     const credentials = await credentialRepository.findByUserId(userId);
-
-    const response = credentials.map(credential => {
-        const newPassword = decrypt(credential.password);
-        if (credential.userId !== userId || !credential) {
-            throw {
-                type: "not found",
-                message: "credentials not found"
-            }
+    if (credentials.length === 0) {
+        throw {
+            type: "not found",
+            message: "credentials not found"
         }
+    }
+    
+    const response = credentials.map(credential => {
+        checkExistingCredential(credential, userId);
+        const newPassword = decrypt(credential.password);        
 
         return {
             title: credential.title,
@@ -58,14 +76,8 @@ export async function getCredentials(userId: number) {
 
 export async function getCredentialById(id: number, userId: number) {
     const credential = await credentialRepository.findById(id);
-    const newPassword = decrypt(credential.password);
-
-    if (credential.userId !== userId || !credential) {
-        throw {
-            type: "not found",
-            message: "credentials not found"
-        }
-    }
+    checkExistingCredential(credential, userId);
+    const newPassword = decrypt(credential.password);    
 
     const response = {
         title: credential.title,
@@ -78,11 +90,6 @@ export async function getCredentialById(id: number, userId: number) {
 
 export async function deleteCredential(id: number, userId: number) {
     const credential = await credentialRepository.findById(id);
-    
-    if (credential.userId !== userId || !credential) {
-        throw {
-            type: "not found",
-            message: "credentials not found"
-        }
-    }
+    checkExistingCredential(credential, userId);
+    await credentialRepository.deleteCredential(id);
 }
