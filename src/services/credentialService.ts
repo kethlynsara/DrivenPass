@@ -35,7 +35,7 @@ export async function postCredential(credentialData: CreateCredentialData) {
 }
 
 export async function getCredentials(userId: number) {
-    const credentials = await credentialRepository.findById(userId);
+    const credentials = await credentialRepository.findByUserId(userId);
 
     const response = credentials.map(credential => {
         const newPassword = decrypt(credential.password);
@@ -53,5 +53,25 @@ export async function getCredentials(userId: number) {
             password: newPassword
         }
     })
+    return response;
+}
+
+export async function getCredentialById(id: number, userId: number) {
+    const credential = await credentialRepository.findById(id);
+    const newPassword = decrypt(credential.password);
+
+    if (credential.userId !== userId || !credential) {
+        throw {
+            type: "not found",
+            message: "credentials not found"
+        }
+    }
+
+    const response = {
+        title: credential.title,
+        url: credential.url,
+        username: credential.username,
+        password: newPassword
+    }
     return response;
 }
