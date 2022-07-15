@@ -75,3 +75,14 @@ export async function getCredentialById(id: number, userId: number) {
     }
     return response;
 }
+
+export async function deleteCredential(id: number, userId: number) {
+    const credential = await credentialRepository.findById(id);
+    
+    if (credential.userId !== userId || !credential) {
+        throw {
+            type: "not found",
+            message: "credentials not found"
+        }
+    }
+}
