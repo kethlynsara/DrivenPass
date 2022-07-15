@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { signUpSchema } from "../schemas/authSchema.js";
-import { CreateAuthData } from "../services/authService";
+import { CreateAuthData } from "../services/authService.js";
 
 export async function validateAuthData(req: Request,  res: Response, next: NextFunction) {
     const data: CreateAuthData = req.body;

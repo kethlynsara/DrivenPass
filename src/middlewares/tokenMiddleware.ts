@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { NextFunction, Request, Response } from "express";
 import * as authRepository from "../repositories/authRepository.js";
+dotenv.config();
 
 export async function validateToken(req: Request, res: Response, next: NextFunction) {
     const { authorization } = req.headers;

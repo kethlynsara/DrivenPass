@@ -11,48 +11,49 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  email String
-  password String
-  createdAt DateTime @default(now())
-  Session Session[]
+  id         Int          @id @default(autoincrement())
+  email      String
+  password   String
+  createdAt  DateTime     @default(now())
+  Session    Session[]
   Credential Credential[]
-  Note Note[]
-  Card Card[]
-  Wifi Wifi[]
+  Note       Note[]
+  Card       Card[]
+  Wifi       Wifi[]
 
   @@map("users")
 }
 
 model Session {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  token String
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  token     String
   createdAt DateTime @default(now())
 
   @@map("sessions")
 }
 
 model Credential {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  title String
-  url String
-  username String
-  password String
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  url       String
+  username  String
+  password  String
   createdAt DateTime @default(now())
 
+  @@unique([userId, title])
   @@map("credentials")
 }
 
 model Note {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  title String
-  note String
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  note      String
   createdAt DateTime @default(now())
 
   @@map("notes")
@@ -65,31 +66,30 @@ enum Type {
 }
 
 model Card {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  title String
-  number String
-  name String
-  CVC String
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  user           User     @relation(fields: [userId], references: [id])
+  title          String
+  number         String
+  name           String
+  CVC            String
   expirationDate String
-  password String
-  isVirtual Boolean
-  type Type
-  createdAt DateTime @default(now())
-  
+  password       String
+  isVirtual      Boolean
+  type           Type
+  createdAt      DateTime @default(now())
+
   @@map("cards")
 }
 
 model Wifi {
-  id Int @id @default(autoincrement())
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-  title String
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  title       String
   networkName String
-  password String
-  createdAt DateTime @default(now())
+  password    String
+  createdAt   DateTime @default(now())
 
   @@map("wifi")
 }
-
