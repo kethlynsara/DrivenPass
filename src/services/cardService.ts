@@ -66,7 +66,7 @@ export async function getCards(userId: number) {
 }
 
 export async function getCardById(id: number, userId: number) {
-    const card = await cardRepository.findById(id, userId);
+    const card = await cardRepository.findById(id);
     checkExistingCard(card, userId);
     const newPassword = utils.decrypt(card.password);   
     const newCVC = utils.decrypt(card.CVC);
@@ -81,4 +81,10 @@ export async function getCardById(id: number, userId: number) {
         isVirtual: card.isVirtual,
         type: card.type 
     }
+}
+
+export async function deleteCard(id: number, userId: number) {
+    const card = await cardRepository.findById(id);
+    checkExistingCard(card, userId);
+    await cardRepository.deleteCard(id);
 }

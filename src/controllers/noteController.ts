@@ -17,6 +17,10 @@ export async function getNotes(req: Request, res: Response) {
 
 export async function getNoteById(req: Request, res: Response) {
     const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+
     const userId: number = res.locals.userId;
     const note = await noteService.getNoteById(id, userId);
     res.send(note);
@@ -24,6 +28,10 @@ export async function getNoteById(req: Request, res: Response) {
 
 export async function deleteNote(req: Request, res: Response) {
     const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+    
     const userId: number = res.locals.userId;
     await noteService.deleteNote(id, userId);
     res.sendStatus(200);

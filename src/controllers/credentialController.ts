@@ -16,6 +16,10 @@ export async function getCredentials(req: Request, res: Response) {
 
 export async function getCredentialById(req: Request, res: Response) {
     const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+
     const userId: number = res.locals.userId;
     const credential = await credentialService.getCredentialById(id, userId);
     res.send(credential);
@@ -23,6 +27,10 @@ export async function getCredentialById(req: Request, res: Response) {
 
 export async function deleteCredential(req: Request, res: Response) {
     const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+    
     const userId: number = res.locals.userId;
     await credentialService.deleteCredential(id, userId);
     res.sendStatus(200);
