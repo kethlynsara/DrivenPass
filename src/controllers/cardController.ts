@@ -8,3 +8,9 @@ export async function postCard(req: Request, res: Response) {
     await cardService.postCard({...body}, userId);
     res.sendStatus(201);
 }
+
+export async function getCards(req: Request, res: Response) {
+    const userId: number = res.locals.userId;
+    const cards = await cardService.getCards(userId);
+    res.send(cards);
+}

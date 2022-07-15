@@ -11,3 +11,7 @@ export async function findByIdAndTitle(userId: number, title: string) {
 export async function insert(cardData: CardStructure) {
     await prisma.card.create({data: cardData});
 }
+
+export async function findByUserId(userId:number) {
+    return await prisma.card.findMany({where: {userId}});
+}
