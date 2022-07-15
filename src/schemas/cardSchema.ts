@@ -1,10 +1,11 @@
 import joi from "joi";
 import BaseJoi from 'joi';
 import JoiDate from '@joi/date';
+import { CreateCardData } from "../repositories/cardRepository.js";
 
 const Joi = BaseJoi.extend(JoiDate);
 
-export const cardSchema = joi.object({
+export const cardSchema = joi.object<CreateCardData>({
     title: joi.string().required(),
     number: joi.string().required(),
     name: joi.string().required(),

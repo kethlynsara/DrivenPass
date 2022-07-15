@@ -80,6 +80,7 @@ model Card {
   type           Type
   createdAt      DateTime @default(now())
 
+  @@unique([userId, title])
   @@map("cards")
 }
 
