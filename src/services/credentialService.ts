@@ -65,6 +65,7 @@ export async function getCredentials(userId: number) {
         const newPassword = decrypt(credential.password);        
 
         return {
+            id: credential.id,
             title: credential.title,
             url: credential.url,
             username: credential.username,
@@ -80,6 +81,7 @@ export async function getCredentialById(id: number, userId: number) {
     const newPassword = decrypt(credential.password);    
 
     const response = {
+        id: credential.id,
         title: credential.title,
         url: credential.url,
         username: credential.username,

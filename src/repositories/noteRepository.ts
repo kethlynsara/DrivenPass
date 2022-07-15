@@ -9,7 +9,7 @@ export async function findByIdAndTitle(userId: number, title: string) {
 }
 
 export async function insert(noteData: NoteStructure) {
-    return await prisma.note.create({data: noteData});
+    await prisma.note.create({data: noteData});
 }
 
 export async function findByUserId(userId: number) {
@@ -18,5 +18,9 @@ export async function findByUserId(userId: number) {
 
 export async function findById(id: number) {
     return await prisma.note.findFirst({where: {id}})
+}
+
+export async function deleteNote(id: number) {
+    await prisma.note.delete({where: {id}})
 }
 

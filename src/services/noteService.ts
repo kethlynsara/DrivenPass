@@ -45,6 +45,7 @@ export async function getNotes(userId: number) {
     const response = notes.map(note => {
         checkExistingNote(note, userId);
         return {
+            id: note.id,
             title: note.title,
             note: note.note
         }
@@ -57,7 +58,14 @@ export async function getNoteById(id: number, userId: number) {
     checkExistingNote(note, userId);
 
     return {
+        id: note.id,
         title: note.title,
         note: note.note
     }
+}
+
+export async function deleteNote(id: number, userId: number) {
+    const note = await noteRepository.findById(id);
+    checkExistingNote(note, userId);
+    await noteRepository.deleteNote(id);
 }
