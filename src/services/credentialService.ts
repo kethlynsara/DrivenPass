@@ -21,8 +21,37 @@ async function encrypt(password: string) {
     return encryptedString;
 }
 
+function decrypt(encryptedString: string) {
+    const cryptrKey = process.env.CRYPTR_KEY;
+    const cryptr = new Cryptr(cryptrKey);
+    const decryptedString = cryptr.decrypt(encryptedString);
+    return decryptedString;
+}
+
 export async function postCredential(credentialData: CreateCredentialData) {
     await checkCredentialTitle(credentialData);
     const passwordHash = await encrypt(credentialData.password);    
     await credentialRepository.insert({...credentialData, password: passwordHash});
+}
+
+export async function getCredentials(userId: number) {
+    const credentials = await credentialRepository.findById(userId);
+
+    const response = credentials.map(credential => {
+        const newPassword = decrypt(credential.password);
+        if (credential.userId !== userId || !credential) {
+            throw {
+                type: "not found",
+                message: "credentials not found"
+            }
+        }
+
+        return {
+            title: credential.title,
+            url: credential.url,
+            username: credential.username,
+            password: newPassword
+        }
+    })
+    return response;
 }
