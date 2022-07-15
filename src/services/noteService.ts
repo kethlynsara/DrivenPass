@@ -26,8 +26,8 @@ function checkExistingNote(note: Note, userId: number) {
 
     if (note.userId !== userId) {
         throw {
-            type: "not found",
-            message: "notes not found"
+            type: "unauthorized",
+            message: "invalid user"
         }
     }
 }
