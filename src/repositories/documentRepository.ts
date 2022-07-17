@@ -11,3 +11,7 @@ export async function insert(documentData: CreateDocumentData) {
 export async function findByUserId(userId: number) {
     return await prisma.document.findMany({where: {userId}});
 }
+
+export async function findById(id: number) {
+    return await prisma.document.findFirst({where: {id}});
+}

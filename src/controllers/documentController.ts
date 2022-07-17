@@ -14,3 +14,14 @@ export async function getDocuments(req: Request, res: Response) {
     const documents = await documentService.getDocuments(userId);
     res.send(documents);
 }
+
+export async function getDocumentById(req: Request, res: Response) {
+    const id = parseInt(req.params.id);
+    if (!id) {
+        return res.sendStatus(401);
+    }
+
+    const userId: number = res.locals.userId;
+    const document = await documentService.getDocumentById(userId, id);
+    res.send(document);
+}
