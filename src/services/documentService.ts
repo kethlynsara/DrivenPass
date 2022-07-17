@@ -1,4 +1,4 @@
-import { DocumentStructure, CreateDocumentData, insert, findByUserId, findById } from "../repositories/documentRepository.js";
+import { DocumentStructure, CreateDocumentData, insert, findByUserId, findById, deleteDocumentRegister } from "../repositories/documentRepository.js";
 
 async function generateDocumentData(documentData: DocumentStructure, userId: number) {
     let documentId = null;
@@ -72,4 +72,10 @@ export async function getDocumentById(userId: number, id: number) {
         number: document.number,
         issuingBody: document.issuingBody
     }
+}
+
+export async function deleteDocument(userId: number, id:  number ) {
+    const document = await findById(id);
+    checkExistingDocument(document, userId);
+    await deleteDocumentRegister(id);
 }

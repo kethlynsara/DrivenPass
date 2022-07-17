@@ -15,3 +15,7 @@ export async function findByUserId(userId: number) {
 export async function findById(id: number) {
     return await prisma.document.findFirst({where: {id}});
 }
+
+export async function deleteDocumentRegister(id: number) {
+    return await prisma.document.delete({where: {id}});
+}
