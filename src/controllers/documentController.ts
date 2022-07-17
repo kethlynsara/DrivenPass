@@ -8,3 +8,9 @@ export async function postDocument(req: Request, res: Response) {
     await documentService.postDocument(data, userId);
     res.sendStatus(201);
 }
+
+export async function getDocuments(req: Request, res: Response) {
+    const userId: number = res.locals.userId;
+    const documents = await documentService.getDocuments(userId);
+    res.send(documents);
+}

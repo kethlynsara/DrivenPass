@@ -1,4 +1,4 @@
-import { DocumentStructure, CreateDocumentData, insert } from "../repositories/documentRepository.js";
+import { DocumentStructure, CreateDocumentData, insert, findByUserId } from "../repositories/documentRepository.js";
 
 async function generateDocumentData(documentData: DocumentStructure, userId: number) {
     let documentId = null;
@@ -10,18 +10,51 @@ async function generateDocumentData(documentData: DocumentStructure, userId: num
         documentId = 3;
     }
 
-    return {
-        userId,
-        documentId,
-        number: documentData.number,        
-        name: documentData.name,
-        issueDate: documentData.issueDate,
-        expirationDate: documentData.expirationDate,
-        issuingBody: documentData.issuingBody
-    }
+    return {...documentData, userId, documentId}
 }
 
 export async function postDocument(documentData: DocumentStructure, userId: number) {
     const documentInfo = await generateDocumentData(documentData, userId);
     await insert(documentInfo);    
+}
+
+function checkExistingDocument(document: CreateDocumentData, userId: number) {
+    if (!document) {
+        throw {
+            type: "not found",
+            message: "document not found"
+        }
+    }
+
+    if (document.userId !== userId) {
+        throw {
+            type: "unauthorized",
+            message: "invalid user"
+        }
+    }
+}
+
+export async function getDocuments(userId: number) {
+    const documents = await findByUserId(userId);
+    
+    if (documents.length === 0) {
+        throw {
+            type: "not found",
+            message: "documents not found"
+        }
+    }
+
+    const response = documents.map(document => {
+        checkExistingDocument(document, userId);
+        return {
+            id: document.id,
+            type: document.type,
+            name: document.name,
+            issueDate: document.issueDate,
+            expirationDate: document.expirationDate,
+            number: document.number,
+            issuingBody: document.issuingBody
+        }
+    })
+    return response;
 }

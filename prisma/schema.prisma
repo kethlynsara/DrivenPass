@@ -111,6 +111,7 @@ model Document {
   user           User          @relation(fields: [userId], references: [id])
   documentId     Int
   document       Document_type @relation(fields: [documentId], references: [id])
+  type           String
   name           String
   issueDate      String
   expirationDate String
