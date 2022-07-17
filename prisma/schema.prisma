@@ -20,6 +20,7 @@ model User {
   Note       Note[]
   Card       Card[]
   Wifi       Wifi[]
+  Document   Document[]
 
   @@map("users")
 }
@@ -67,9 +68,9 @@ enum card_type {
 }
 
 model Card {
-  id             Int      @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   userId         Int
-  user           User     @relation(fields: [userId], references: [id])
+  user           User      @relation(fields: [userId], references: [id])
   title          String
   number         String
   name           String
@@ -78,7 +79,7 @@ model Card {
   password       String
   isVirtual      Boolean
   type           card_type
-  createdAt      DateTime @default(now())
+  createdAt      DateTime  @default(now())
 
   @@unique([userId, title])
   @@map("cards")
@@ -97,23 +98,25 @@ model Wifi {
 }
 
 model Document_type {
-  id             Int    @id @default(autoincrement())
-  name       String
-  document       Document[]
+  id       Int        @id @default(autoincrement())
+  name     String
+  document Document[]
 
   @@map("documents_type ")
 }
 
 model Document {
-  id             Int    @id @default(autoincrement())
+  id             Int           @id @default(autoincrement())
+  userId         Int
+  user           User          @relation(fields: [userId], references: [id])
   documentId     Int
-  document       Document_type     @relation(fields: [documentId], references: [id])
+  document       Document_type @relation(fields: [documentId], references: [id])
   name           String
   issueDate      String
   expirationDate String
   number         String
   issuingBody    String
-  createdAt      DateTime @default(now())
+  createdAt      DateTime      @default(now())
 
   @@map("documents")
 }

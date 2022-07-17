@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { documentSchema } from "../schemas/documentSchema.js";
+import { DocumentStructure } from "../repositories/documentRepository.js";
 
 export async function validateDocumentData(req: Request,  res: Response, next: NextFunction) {
-    const data = req.body;
+    const data: DocumentStructure = req.body;
 
     const { error } = documentSchema.validate(data, {abortEarly: false});
 
