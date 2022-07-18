@@ -40,6 +40,8 @@ $ npm run dev
         "email": "jane@gmail.com",
         "password": "janeDoe123"
     }
+```
+```
 - POST /sign-in
     - Authentication route
     - headers: {}
@@ -47,10 +49,12 @@ $ npm run dev
         "email": "jane@gmail.com",
         "password": "janeDoe123"
     }
+ ```
+```
 - POST /credentials
     - Route to create a credential register
     - headers: {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+        "token": 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {
         "url": "https://www.amazon.com.br/",
@@ -58,24 +62,32 @@ $ npm run dev
         "password": "buymore",
         "title": "dream"
     }
+ ```
+ ```
 - GET /credentials
     - Route to view a credential
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - GET /credentials/:id 
     - Route to view a specific credential
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - DELETE /credentials/:id/delete
     - Route to delete a credential register
     -   headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - POST /notes
     - Route to create a secure note register
     - headers: {
@@ -85,24 +97,32 @@ $ npm run dev
         "title": "jane's note",
         "note": "I'm Jane Doe"
     }
+```
+```
 - GET /notes
     - Route to view the user's secure notes
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - GET /notes/:id 
     - Route to view a specific secure note
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - DELETE /notes/:id/delete
     - Route to delete a secure note register
     -   headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - POST /cards
     - Route to create a card register
     - headers: {
@@ -118,26 +138,34 @@ $ npm run dev
         "isVirtual": true,
         "type": "credit"
     }
+```
+```
 - GET /cards
     - Route to view the user's cards
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - GET /cards/:id 
     - Route to view a specific card
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - DELETE /cards/:id/delete
     - Route to delete a card register
     -   headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - POST /wifi
-    - Route to create a cwifi register
+    - Route to create a wifi network register
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
@@ -146,26 +174,34 @@ $ npm run dev
         "networkName": "blindspot",
         "password": "jane123"
     }
+```
+```
 - GET /wifi
-    - Route to view user wifi logs
+    - Route to view user wifi networks
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - GET /wifi/:id 
-    - Route to view a specific wifi register
+    - Route to view a specific wifi network
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - DELETE /wifi/:id/delete
-    - Route to delete a wifi register
+    - Route to delete a wifi network
     -   headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - POST /documents
-    - Route to create a cwifi register
+    - Route to create a document register
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
@@ -177,18 +213,24 @@ $ npm run dev
         "number": "19-765-564",
         "issuingBody": "SSP"
     }
+```
+```
 - GET /documents
     - Route to view user documents
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - GET /documents/:id 
     - Route to view a specific document register
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
+```
+```
 - DELETE /documents/:id/delete
     - Route to delete a document register
     -   headers: {
