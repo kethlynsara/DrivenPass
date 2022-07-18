@@ -86,7 +86,7 @@ $ npm run dev
         "note": "I'm Jane Doe"
     }
 - GET /notes
-    - Route to view a secure note
+    - Route to view the user's secure notes
     - headers: {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
@@ -103,6 +103,97 @@ $ npm run dev
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
     }
     - body: {}
-
+- POST /cards
+    - Route to create a card register
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {
+        "title": "BB",
+        "number": "752-14452-45",
+        "name": "Jane H Doe",
+        "CVC": "457",
+        "expirationDate": "07-2028",
+        "password": "7895",
+        "isVirtual": true,
+        "type": "credit"
+    }
+- GET /cards
+    - Route to view the user's cards
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- GET /cards/:id 
+    - Route to view a specific card
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- DELETE /cards/:id/delete
+    - Route to delete a card register
+    -   headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- POST /wifi
+    - Route to create a cwifi register
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {
+        "title": "home",
+        "networkName": "blindspot",
+        "password": "jane123"
+    }
+- GET /wifi
+    - Route to view user wifi logs
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- GET /wifi/:id 
+    - Route to view a specific wifi register
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- DELETE /wifi/:id/delete
+    - Route to delete a wifi register
+    -   headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- POST /documents
+    - Route to create a cwifi register
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {
+        "type": "RG",
+        "name": "Jane Harmor Doe",
+        "issueDate": "07/2022",
+        "expirationDate": "07/2027",
+        "number": "19-765-564",
+        "issuingBody": "SSP"
+    }
+- GET /documents
+    - Route to view user documents
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- GET /documents/:id 
+    - Route to view a specific document register
+    - headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
+- DELETE /documents/:id/delete
+    - Route to delete a document register
+    -   headers: {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY1ODE3MjM4OCwiZXhwIjoxNjYwNzY0Mzg4fQ.dLAjdiWDQx9zpHyKPlhlK6qUJ-WsPke2Cde4d1c_k98"
+    }
+    - body: {}
 ```
 
